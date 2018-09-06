@@ -1,0 +1,88 @@
+ <!DOCTYPE html>
+ <html lang = "en">
+ <head>
+   <meta charset="utf-8">
+   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+   <meta http-equiv="X-UA-Compatible" content="ie=edge">
+   <title>TODOS</title>
+   <style>
+   li:hover{
+       text-decoration: line-through;
+       background: rgba(0,0,0,0.2);
+   }
+   li{
+       width: 100%;
+       padding: 10px;
+       box-sizing: border-box;
+       font-family: arial;
+       font-size: 20px;
+       cursor: pointer;
+       letter-spacing: 1px;
+   }
+   input[type="text"]{
+       width: 20%;
+       padding: 5px;
+       background:#181c22;
+       border: 2;
+       float: center;
+       font-size: 18px;
+       color: #989898;
+   }
+   button{
+       padding: 10px;
+       width: 10%;
+       float: center;
+       background: #23282e;
+       border: 0;
+       box-sizing: border-box;
+       color: #fff;
+       cursor: pointer;
+       font-size: 15px;
+   }
+
+   h1{
+     text-align: center;
+     font-size: 50px;
+     font-family: cursive;
+   }
+   h3{
+     text-align: center;
+     font-size: 35px;
+     font-family: fantasy;
+
+   }
+   body{
+       background: #0d1521;
+       font-family: tahoma;
+       color: #989898;
+   }
+   </style>
+ </head>
+ <body>
+   <h1><U>To-DO List</U> </h1>
+   <form action="/todos" method="post">
+     <input type="text" name="description" >
+     <button type = "submit">ADD ITEM</button>
+   </form>
+   <ul>
+   {{#todos}}
+      <li>
+        <form action="/todos/{{_id}}/completed" method="post">
+          {{description}} - {{done}}
+          <button type ="submit">Done</button>
+          </form>
+        </li>
+   {{/todos}}
+   </ul>
+   <h3><u>Completed Tasks</u></h3>
+   <ul>
+     {{#doneTodos}}
+       <li>
+       <form action="/todos/{{_id}}/completed" method="post">
+         {{description}} - {{done}}
+         <button type ="submit">Whoops!!</button>
+         </form>
+      </li>
+     {{/doneTodos}}
+ </body>
+ </html>
